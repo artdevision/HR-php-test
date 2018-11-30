@@ -1,0 +1,16 @@
+{
+    "name": "artdevision/yandex-weather",
+    "description": "Yandex weather API Client",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Andrey Myslin",
+            "email": "artdevision@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "guzzlehttp/guzzle": "^6.3"
+    }
+}

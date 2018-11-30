@@ -14,6 +14,7 @@ class Kernel extends ConsoleKernel
      */
     protected $commands = [
         //
+        \App\Console\Commands\WeatherCommand::class,
     ];
 
     /**
@@ -24,6 +25,10 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
+
+        //Теребонька для погоды, чтобы с фронта не дергать API
+
+        $schedule->command('weather:get')->everyMinute();
         // $schedule->command('inspire')
         //          ->hourly();
     }

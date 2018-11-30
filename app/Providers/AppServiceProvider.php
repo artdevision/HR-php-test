@@ -2,7 +2,9 @@
 
 namespace App\Providers;
 
+use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\Schema;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -13,7 +15,13 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        // MariaDB фикс длинны уникального ключа
+        Schema::defaultStringLength(191);
+
+        Blade::directive('money', function($amount) {
+            return $amount;
+            //return number_format((int) $amount/100, 2, ',', ' ');
+        });
     }
 
     /**
@@ -24,5 +32,6 @@ class AppServiceProvider extends ServiceProvider
     public function register()
     {
         //
+
     }
 }

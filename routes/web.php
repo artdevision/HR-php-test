@@ -12,5 +12,9 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('weather');
 });
+
+Route::get('weather', ['as' => 'weather', 'uses' => 'WeatherController@index']);
+
+Route::get('orders/{state?}', ['as' => 'orders', 'uses' => 'OrdersController@index']);

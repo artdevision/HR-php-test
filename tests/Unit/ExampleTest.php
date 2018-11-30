@@ -16,4 +16,9 @@ class ExampleTest extends TestCase
     {
         $this->assertTrue(true);
     }
+
+    public function generate_fake_data()
+    {
+        $this->assertCount(10);
+    }
 }
