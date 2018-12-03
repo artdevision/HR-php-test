@@ -13,4 +13,9 @@ class Partner extends Model
         'email',
         'name',
     ];
+
+    public static function selectList()
+    {
+        return self::select(['id', 'email'])->get()->keyBy('id')->map(function($item) { return $item->name . " (" . $item->email . ")"; })->toArray();
+    }
 }

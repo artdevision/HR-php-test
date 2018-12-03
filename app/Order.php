@@ -130,6 +130,7 @@ class Order extends Model
     {
         $this->fill($data);
         $this->save();
+        $this->refresh();
 //        $this->saveProducts($data);
 
     }
