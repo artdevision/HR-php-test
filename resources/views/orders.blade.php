@@ -31,7 +31,7 @@
                 <td><ul>@each('_order_items', $item->products, 'item')</ul></td>
 
                 <td style="text-align: center"><span class="label label-info">{{trans( 'order.status.' . $item->status)}}</span></td>
-                <td><a href="#" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-pencil"></span></a></td>
+                <td><a href="{{ route('order.edit', ['id' => $item->id]) }}" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-pencil"></span></a></td>
             </tr>
             @endforeach
             </tbody>

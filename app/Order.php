@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
 
 class Order extends Model
 {
@@ -122,6 +123,35 @@ class Order extends Model
                 break;
 
         }
+    }
+
+    public function saveAll($data = [])
+    {
+        $this->fill($data);
+        $this->save();
+        $this->saveProducts($data);
+
+    }
+
+    public function saveProducts($data)
+    {
+
+        $this->products()->sync();
+    }
+
+    /**
+     * @param array $data
+     * @return \Illuminate\Validation\Validator;
+     */
+    public function getEditValidator($data = [])
+    {
+        return Validator::make($data, [
+            'client_email'  => 'required|email',
+            'partner_id'    => 'required|exists:partners,id',
+            'status'        => 'required|in:0,10,20',
+            'products'      => 'required|array',
+            'products.*.id' => 'exists:products,id',
+        ]);
     }
 
 
