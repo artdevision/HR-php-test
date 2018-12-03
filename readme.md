@@ -93,6 +93,10 @@
 `composer dump-autoload` 
 
     Пакет подключен в файле `composer.json` в разделе загрузки psr4
+    
+- Публикацияя ресурсов (конфиг и языковые переменные)
+
+    `php artisan vendor:publish --provider=Artdevision\YandexWeather\Providers\YandexWeatherServiceProvider`
 
 - В файле `.env` прописать ключ `YANDEX_WEATHER_API_KEY={apikey}`
 - Погодка может кэшироваться через теребоньку по крону (но на крайний случай и на хите тоже есть)
