@@ -111,7 +111,7 @@ class Order extends Model
                 return self::orderBy('delivery_dt', 'DESC');
                 break;
             case 'new':
-                return self::where('delivery_dt', '>', Carbon::now()->timestamp)->where('status', self::STATUS_NEW)->orderBy('delivery_dt', 'ASC');
+                return self::where('delivery_dt', '>', Carbon::now()->format('Y-m-d H:i:s'))->where('status', self::STATUS_NEW)->orderBy('delivery_dt', 'ASC');
                 break;
             case 'current':
                 return self::whereRaw('ADDDATE(delivery_dt, INTERVAL +24 HOUR) < NOW()')->where('status', self::STATUS_CURRENT)->orderBy('delivery_dt', 'ASC');
@@ -120,7 +120,7 @@ class Order extends Model
                 return self::where('status', self::STATUS_DONE)->whereRaw("delivery_dt BETWEEN CONCAT(DATE(NOW()), ' 00:00:00') AND CONCAT(DATE(NOW()), ' 23:59:59')")->orderBy('delivery_dt', 'DESC');
                 break;
             case 'overdue':
-                return self::where('delivery_dt', '<', Carbon::now()->timestamp)->where('status', self::STATUS_CURRENT)->orderBy('delivery_dt', 'DESC');
+                return self::where('delivery_dt', '<', Carbon::now()->format('Y-m-d H:i:s'))->where('status', self::STATUS_CURRENT)->orderBy('delivery_dt', 'DESC');
                 break;
 
         }
