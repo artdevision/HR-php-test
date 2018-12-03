@@ -41,6 +41,7 @@ class Order extends Model
             switch ($item->status) {
                 case 20:
                     // Событие на завершенеи заказа
+                    event(new \App\Events\OrderCompliteEvent($item));
                     break;
                 case 10:
                     //Событие на статсу 10
@@ -129,7 +130,7 @@ class Order extends Model
     {
         $this->fill($data);
         $this->save();
-        $this->saveProducts($data);
+//        $this->saveProducts($data);
 
     }
 
@@ -149,8 +150,8 @@ class Order extends Model
             'client_email'  => 'required|email',
             'partner_id'    => 'required|exists:partners,id',
             'status'        => 'required|in:0,10,20',
-            'products'      => 'required|array',
-            'products.*.id' => 'exists:products,id',
+//            'products'      => 'array',
+//            'products.*.id' => 'exists:products,id',
         ]);
     }
 
